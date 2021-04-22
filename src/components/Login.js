@@ -1,4 +1,5 @@
 import React from "react";
+import { googlesigninwrapper } from "../firebase";
 
 const Login = () => {
   return (
@@ -55,7 +56,12 @@ const Login = () => {
               </div>
               <div class="flex -mx-3">
                 <div class="w-full px-3 mb-5">
-                  <button class="block w-full max-w-xs mx-auto text-indigo-500 border-indigo-700 border-2 rounded-lg px-3 py-3 font-semibold">
+                  <button
+                    onClick={() => {
+                      googlesigninwrapper();
+                    }}
+                    class="block w-full max-w-xs mx-auto text-indigo-500 border-indigo-700 border-2 rounded-lg px-3 py-3 font-semibold"
+                  >
                     Continue with Google
                   </button>
                 </div>
