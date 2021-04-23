@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { googlesigninwrapper } from "../firebase";
 import { globalStore } from "./UserContext";
 import { Link } from "react-router-dom";
+import UnAuthNavbar from "./UnAuthNavbar";
 const Login = (props) => {
   // const resolve = (data) => {
   //   setAuth(data);
@@ -11,8 +12,9 @@ const Login = (props) => {
   //   setAuth({});
   // };
   return (
-    <div>
-      <div className="min-w-screen min-h-screen lg:max-w-4xl mx-auto flex flex-col items-center justify-center px-5 py-5">
+    <div className="min-w-screen min-h-screen">
+      <UnAuthNavbar />
+      <div className="lg:max-w-4xl mx-auto flex flex-col items-center justify-center px-5 py-5 mt-20">
         <div className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden md:flex">
           <div className="hidden w-1/2 bg-indigo-500 py-10 px-10 md:flex flex-col items-center justify-center">
             <div className="text-4xl font-bold mb-12 text-white text-center flex justify-center items-center">
