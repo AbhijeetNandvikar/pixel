@@ -14,17 +14,21 @@ export const firebaseConfig = {
 };
 
 export const initFirebase = (firebaseConfig, resolve, reject) => {
-  const firebaseApp = firebase.initializeApp(firebaseConfig);
-  firebaseApp.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      console.log("user signed in");
-      resolve(firebase.auth().currentUser);
-    } else {
-      // No user is signed in
-      reject();
-      console.log("user logged out");
-    }
-  });
+  try {
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    firebaseApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log("user signed in");
+        resolve(firebase.auth().currentUser);
+      } else {
+        // No user is signed in
+        reject();
+        console.log("user logged out");
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const signUpWrapper = (email, pass, resolve, reject) => {
@@ -92,6 +96,8 @@ export const googlesigninwrapper = () => {
       console.log(error);
     });
 };
+
+export const checkFirebaseAuth = async () => firebase.auth().currentUser;
 export const firebaseStorageRef = () => firebase.storage().ref();
 
 export const fireStoreRef = () => firebase.firestore();
