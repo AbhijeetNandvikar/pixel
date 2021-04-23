@@ -13,13 +13,15 @@ export const firebaseConfig = {
   measurementId: "G-HR2XMEQMBL",
 };
 
-export const initFirebase = (firebaseConfig) => {
+export const initFirebase = (firebaseConfig, resolve, reject) => {
   const firebaseApp = firebase.initializeApp(firebaseConfig);
   firebaseApp.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log("user signed in");
+      resolve(firebase.auth().currentUser);
     } else {
-      // No user is signed in.
+      // No user is signed in
+      reject();
       console.log("user logged out");
     }
   });
@@ -79,7 +81,6 @@ export const googlesigninwrapper = () => {
       var token = credential.accessToken;
       var user = result.user;
       // store.dispatch(userLogin(user));
-      console.log(user);
     })
     .catch((error) => {
       // var errorCode = error.code;

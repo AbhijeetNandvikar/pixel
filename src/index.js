@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { firebaseConfig, initFirebase } from "./firebase";
-initFirebase(firebaseConfig);
+import { UserContext } from "./components/UserContext";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <UserContext>
     <App />
-  </React.StrictMode>,
+  </UserContext>,
+
   document.getElementById("root")
 );
 

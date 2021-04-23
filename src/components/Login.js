@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { googlesigninwrapper } from "../firebase";
-
-const Login = () => {
+import { globalStore } from "./UserContext";
+import { Link } from "react-router-dom";
+const Login = (props) => {
+  // const resolve = (data) => {
+  //   setAuth(data);
+  //   console.log(data);
+  // };
+  // const reject = () => {
+  //   setAuth({});
+  // };
   return (
     <div>
       <div className="min-w-screen min-h-screen lg:max-w-4xl mx-auto flex flex-col items-center justify-center px-5 py-5">
         <div className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden md:flex">
-          <div className="hidden w-1/2 bg-indigo-500 py-10 px-10 md:flex">
+          <div className="hidden w-1/2 bg-indigo-500 py-10 px-10 md:flex flex-col items-center justify-center">
             <div className="text-4xl font-bold mb-12 text-white text-center flex justify-center items-center">
               <div>Showcase your Art on PIXEL</div>
             </div>
+            <Link to="/signup" className="text-white mt-6 ">
+              Click here to create an account
+            </Link>
           </div>
           <div className="w-full md:w-1/2 py-10 px-5 md:px-10">
             <div className="text-center mb-10">
