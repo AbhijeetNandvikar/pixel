@@ -3,12 +3,14 @@ import { fireStoreRef } from "../firebase";
 import { globalStore } from "./UserContext";
 import EditForm from "./EditForm";
 import UploadForm from "./UploadForm";
+import { useHistory } from "react-router";
 
 const ProfilePage = () => {
   const [editForm, setEditForm] = React.useState(false);
   const [uploadForm, setUploadForm] = React.useState(false);
   const [uploadedImages, setUploadedImages] = React.useState([]);
   const { auth, setAuth } = React.useContext(globalStore);
+  const history = useHistory();
 
   React.useEffect(() => {
     const db = fireStoreRef();
@@ -90,9 +92,17 @@ const ProfilePage = () => {
               Upload Image
             </button>
           </div>
+          <button
+            className="px-3 w-80 py-2 border-indigo-700 border-2 text-indigo-700 rounded-md w-100 mt-4"
+            onClick={() => {
+              history.push("/feed");
+            }}
+          >
+            feed
+          </button>
           <div className="w-80 flex mt-4">
             <span className="text-lg text-gray-700 font-bold ml-2">
-              5 POSTS
+              {uploadedImages.length} POSTS
             </span>
           </div>
         </div>
