@@ -9,12 +9,14 @@ import Feed from "./Feed";
 const MainApp = () => {
   const { auth } = useContext(globalStore);
   return (
-    <div>
-      {auth !== null ? <Navbar /> : <UnAuthNavbar />}
-      <Switch>
-        <Route exact path="/profile/:id" component={ProfilePage} />
-        <Route path="/feed" component={Feed} />
-      </Switch>
+    <div className="h-screen flex-col flex">
+      <div>{auth !== null ? <Navbar /> : <UnAuthNavbar />}</div>
+      <div className=" bg-gray-50 pt-8 h-full">
+        <Switch>
+          <Route exact path="/profile/:id" component={ProfilePage} />
+          <Route path="/feed" component={Feed} />
+        </Switch>
+      </div>
     </div>
   );
 };

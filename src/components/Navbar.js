@@ -17,11 +17,13 @@ const Navbar = () => {
         >
           Logout
         </button>
-        <img
-          className="w-14 h-14 object-cover rounded-full ml-8"
-          src={auth ? auth.photoUrl : ""}
-          alt="pic"
-        />
+        <Link to={`/profile/${auth?.uid}`}>
+          <img
+            className="w-14 h-14 object-cover rounded-full ml-8"
+            src={auth ? auth.photoUrl : ""}
+            alt="pic"
+          />
+        </Link>
       </div>
     </div>
   );

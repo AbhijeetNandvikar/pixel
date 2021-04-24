@@ -14,7 +14,7 @@ const Feed = () => {
   };
   return (
     <div>
-      This is Feed page
+      {/* This is Feed page */}
       <div className="flex flex-col items-center">
         <PixelPost data={data} />
         <PixelPost data={data} />

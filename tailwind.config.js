@@ -6,10 +6,10 @@ module.exports = {
   theme: {
     extend: {
       height: (theme) => ({
-        postLg: "500px",
+        postLg: "550px",
       }),
       width: (theme) => ({
-        postLg: "500px",
+        postLg: "550px",
       }),
     },
   },
