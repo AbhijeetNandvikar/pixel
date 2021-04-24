@@ -109,8 +109,8 @@ const PixelPost = (props) => {
               <span className="font-bold text">122,780 likes</span>
             </div>
             <div className="caption text mt-3">
-              <b>apple </b>
-              new Iphone release ✨
+              <b>{props.data.name + "  "}</b>
+              {props.data.description}
             </div>
             <div className="post-date mt-1">
               <span className="text text-gray-900">1 minute ago</span>

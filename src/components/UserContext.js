@@ -18,14 +18,26 @@ export const UserContext = (props) => {
   };
   const resolve = (data) => {
     console.log(data);
-    setAuth({
-      name: data.displayName,
-      email: data.email,
-      photoUrl: data.photoURL,
-      emailVerified: data.emailVerified,
-      uid: data.uid,
-      images: data?.images ? data.images : [],
-    });
+    fireStoreRef()
+      .collection("users")
+      .doc(data.uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setAuth(doc.data());
+        } else {
+          setAuth({
+            name: data.displayName,
+            email: data.email,
+            photoUrl: data.photoURL,
+            emailVerified: data.emailVerified,
+            uid: data.uid,
+            images: data?.images?.length ? data.images : [],
+            bio: data.bio ? data.bio : "",
+          });
+        }
+      });
+
     redirect("/feed");
   };
   console.log(auth);
@@ -40,6 +52,17 @@ export const UserContext = (props) => {
         console.log("user logged out");
       }
     });
+  }, []);
+
+  React.useEffect(() => {
+    if (auth !== null) {
+      fireStoreRef()
+        .collection("user")
+        .doc(auth.uid)
+        .onSnapshot((doc) => {
+          setAuth(doc.data());
+        });
+    }
   }, []);
 
   return (

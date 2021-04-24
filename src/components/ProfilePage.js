@@ -31,7 +31,7 @@ const ProfilePage = () => {
         .get()
         .then((res) => {
           console.log(res.data());
-          setUploadedImages(res.data().images);
+          setUploadedImages(res.data()?.images ? res.data().images : []);
         });
     }
   }, [auth]);
@@ -48,7 +48,11 @@ const ProfilePage = () => {
   return (
     <div className="">
       {editForm ? (
-        <EditForm auth={auth} close={() => setEditForm(!editForm)} />
+        <EditForm
+          auth={auth}
+          setAuth={setAuth}
+          close={() => setEditForm(!editForm)}
+        />
       ) : (
         <></>
       )}
@@ -69,10 +73,7 @@ const ProfilePage = () => {
         />
         <div className="flex flex-col items-start justify-start w-96 ml-16">
           <div className="text-2xl font-bold mb-4">{auth?.name}</div>
-          <div className="text-base text-gray-700 mb-2">
-            Hi!! I am a frontend developer, and I love to create awesome
-            websites and web Apps.
-          </div>
+          <div className="text-base text-gray-700 mb-2">{auth?.bio}</div>
           <div className="text-base text-gray-700 mb-2">{auth?.email}</div>
           <div className="w-80 flex mt-3">
             <button

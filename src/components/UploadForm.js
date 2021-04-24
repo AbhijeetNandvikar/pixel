@@ -7,6 +7,7 @@ const UploadForm = (props) => {
   const [image, setImage] = React.useState(null);
   const [progress, setProgress] = React.useState(0);
   const [uploaded, setUploaded] = React.useState(false);
+  const [description, setDescription] = React.useState("");
 
   const uploadImg = (img) => {
     console.log(img);
@@ -47,6 +48,7 @@ const UploadForm = (props) => {
               .add({
                 ...props.auth,
                 downloadURL: downloadURL,
+                description: description,
               })
               .then((res) => {
                 db.collection("users")
@@ -122,6 +124,8 @@ const UploadForm = (props) => {
                   <textarea
                     class="w-full -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="Enter description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
               </div>
