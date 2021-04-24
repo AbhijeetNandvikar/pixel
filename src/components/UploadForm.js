@@ -118,24 +118,7 @@ const UploadForm = (props) => {
             Image Uploaded
           </div>
         ) : (
-          <>
-            <div class="flex mt-8">
-              <div class="w-full mb-5">
-                <label for="" class="text-lg font-semibold">
-                  Description
-                </label>
-                <div class="flex mt-4">
-                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
-                  <textarea
-                    class="w-full -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                    placeholder="Enter description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-          </>
+          <></>
         )}
         {!staged ? (
           <>
@@ -159,14 +142,32 @@ const UploadForm = (props) => {
             </label>
           </>
         ) : (
-          <button
-            className="bg-indigo-700 rounded-lg px-4 py-4 text-white font-bold my-4 text-center"
-            onClick={() => {
-              uploadImg(image);
-            }}
-          >
-            Upload Image
-          </button>
+          <>
+            <div class="flex mt-8">
+              <div class="w-full mb-5">
+                <label for="" class="text-lg font-semibold">
+                  Description
+                </label>
+                <div class="flex mt-4">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
+                  <textarea
+                    class="w-full -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                    placeholder="Enter description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              className="bg-indigo-700 rounded-lg px-4 py-4 text-white font-bold my-4 text-center"
+              onClick={() => {
+                uploadImg(image);
+              }}
+            >
+              Upload Image
+            </button>
+          </>
         )}
         <button
           className="bg-indigo-700 rounded-lg px-4 py-4 text-white font-bold my-4 text-center"

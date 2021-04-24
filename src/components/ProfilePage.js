@@ -41,8 +41,11 @@ const ProfilePage = () => {
   const renderImages = (images) => {
     return images.map((image) => {
       return (
-        <div className="">
-          <img className=" object-cover " src={image.downloadURL} />
+        <div className="block">
+          <img
+            className="object-cover w-full h-full "
+            src={image.downloadURL}
+          />
         </div>
       );
     });
@@ -67,14 +70,17 @@ const ProfilePage = () => {
       ) : (
         <></>
       )}
-      <div className="flex justify-start  items-start mt-8 mb-16 lg:w-6/12 mx-auto">
+
+      <div className="flex md:justify-start  md:items-start mt-8 mb-16 lg:w-6/12 flex-col  md:flex-row mx-auto">
         <img
-          className="w-60 h-60 rounded-full object-cover shadow-md ml-8"
+          className="md:w-60 md:h-60 w-28 h-28  rounded-full object-cover shadow-md ml-8 mb-4"
           src={auth?.photoUrl}
           alt="profile"
         />
-        <div className="flex flex-col items-start justify-start w-96 ml-16">
-          <div className="text-2xl font-bold mb-4">{auth?.name}</div>
+        <div className="flex flex-col items-start justify-start md:w-96 md:ml-16 mx-auto">
+          <div className="text-2xl font-bold mb-4 text-center">
+            {auth?.name}
+          </div>
           <div className="text-base text-gray-700 mb-2">{auth?.bio}</div>
           <div className="text-base text-gray-700 mb-2">{auth?.email}</div>
           <div className="w-80 flex mt-3">
@@ -96,21 +102,21 @@ const ProfilePage = () => {
             </button>
           </div>
           <button
-            className="px-3 w-80 py-2 border-indigo-700 border-2 text-indigo-700 rounded-md w-100 mt-4"
+            className="px-3 w-full md:w-80 py-2 border-indigo-700 border-2 text-indigo-700 rounded-md w-100 mt-4"
             onClick={() => {
               history.push("/feed");
             }}
           >
             feed
           </button>
-          <div className="w-80 flex mt-4">
+          <div className="md:w-80 flex mt-4">
             <span className="text-lg text-gray-700 font-bold ml-2">
               {uploadedImages.length} POSTS
             </span>
           </div>
         </div>
       </div>
-      <div className=" grid grid-cols-3 place-items-center place-content-center	lg:gap-8 gap-3 px-4 lg:w-6/12 mx-auto">
+      <div className="grid lg:grid-cols-3 grid-cols-2 place-items-center place-content-center	lg:gap-8 gap-3 px-4 lg:w-6/12 mx-auto mb-8">
         {renderImages(uploadedImages)}
       </div>
     </div>

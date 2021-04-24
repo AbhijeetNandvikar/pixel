@@ -10,13 +10,13 @@ const UnAuthNavbar = () => {
       <div className="flex ">
         <Link
           to="/login"
-          className="focus:outline-none text-white text-lg py-2 px-8 rounded-md border-2 bg-indigo-600"
+          className="focus:outline-none text-white text py-2 px-4 rounded-md border-2 bg-indigo-600  border-indigo-600"
         >
           Login
         </Link>
         <Link
           to="/signup"
-          className="focus:outline-none text-indigo-600 text-lg py-2 px-8 rounded-md border-2 border-indigo-600 ml-8"
+          className="focus:outline-none text-indigo-600 text py-2 px-4 rounded-md border-2 border-indigo-600 ml-4"
         >
           Sign Up
         </Link>
