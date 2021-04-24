@@ -11,7 +11,7 @@ const PixelPost = (props) => {
               className="h-14 w-14 border rounded-full overflow-hidden mr-4 object-cover"
               data-testid="user-avatar"
               draggable="false"
-              src={props.data.image}
+              src={props.data.photoUrl}
             />
             <div className="user-name-and-place flex flex-col">
               <span className="text-lg font-bold">{props.data.name}</span>
@@ -56,7 +56,7 @@ const PixelPost = (props) => {
         <div className="feed-img">
           <img
             className="h-postLg w-postLg object-cover"
-            src={props.data.image}
+            src={props.data.downloadURL}
             alt=""
           />
         </div>

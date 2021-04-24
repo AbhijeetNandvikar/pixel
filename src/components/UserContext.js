@@ -1,6 +1,8 @@
 import React from "react";
-import { firebaseConfig, initFirebase } from "../firebase";
+import { checkFirebaseAuth, fireStoreRef } from "../firebase";
 import { useHistory } from "react-router-dom";
+import firebase from "firebase";
+
 export const globalStore = React.createContext(null);
 
 export const UserContext = (props) => {
@@ -15,18 +17,29 @@ export const UserContext = (props) => {
     redirect("login");
   };
   const resolve = (data) => {
+    console.log(data);
     setAuth({
       name: data.displayName,
       email: data.email,
       photoUrl: data.photoURL,
       emailVerified: data.emailVerified,
       uid: data.uid,
+      images: data?.images ? data.images : [],
     });
     redirect("/feed");
   };
   console.log(auth);
   React.useEffect(() => {
-    initFirebase(firebaseConfig, resolve, reject);
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log("user signed in");
+        resolve(firebase.auth().currentUser);
+      } else {
+        // No user is signed in
+        reject();
+        console.log("user logged out");
+      }
+    });
   }, []);
 
   return (
