@@ -5,15 +5,6 @@ import { fireStoreRef } from "../firebase";
 
 const Feed = () => {
   const [feed, setFeed] = React.useState([]);
-  const data = {
-    profilePic: post,
-    id: "qwrwerwer",
-    image: post,
-    dateAndTime: "21st April 2020, 11:30PM",
-    name: "Abhijeet Nandvikar",
-    bio: "Hi, I am a Frontend Developer",
-    likes: [],
-  };
   React.useEffect(() => {
     const db = fireStoreRef();
     db.collection("images")

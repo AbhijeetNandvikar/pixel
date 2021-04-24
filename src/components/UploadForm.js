@@ -13,7 +13,8 @@ const UploadForm = (props) => {
     console.log(img);
     const db = fireStoreRef();
     const storage = firebaseStorageRef();
-    const ref = storage.child(uuidv4());
+    const uniqueId = uuidv4();
+    const ref = storage.child(uniqueId);
     // const file = URL.createObjectURL(image);
     let reader = new FileReader();
 
@@ -45,7 +46,8 @@ const UploadForm = (props) => {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             console.log("File available at", downloadURL);
             db.collection("images")
-              .add({
+              .doc(uniqueId)
+              .set({
                 ...props.auth,
                 downloadURL: downloadURL,
                 description: description,
@@ -57,7 +59,10 @@ const UploadForm = (props) => {
                   .then((doc) => {
                     let data = doc.data();
                     let arr = data.images;
-                    arr.push(downloadURL);
+                    arr.push({
+                      location: uniqueId,
+                      downloadURL: downloadURL,
+                    });
                     db.collection("users")
                       .doc(props.auth.uid)
                       .update({

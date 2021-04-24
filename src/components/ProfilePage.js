@@ -9,6 +9,8 @@ const ProfilePage = () => {
   const [editForm, setEditForm] = React.useState(false);
   const [uploadForm, setUploadForm] = React.useState(false);
   const [uploadedImages, setUploadedImages] = React.useState([]);
+  const [showImage, setShowImage] = React.useState(false);
+
   const { auth, setAuth } = React.useContext(globalStore);
   const history = useHistory();
 
@@ -40,7 +42,7 @@ const ProfilePage = () => {
     return images.map((image) => {
       return (
         <div className="">
-          <img className=" object-cover " src={image} />
+          <img className=" object-cover " src={image.downloadURL} />
         </div>
       );
     });
