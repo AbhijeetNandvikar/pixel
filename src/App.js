@@ -25,10 +25,7 @@ function App() {
         <Route path="/">
           <MainApp />
         </Route>
-        <Route path="/feed">
-          <Redirect to="/" />
-        </Route>
-        <Route path="/profile/:id">
+        <Route path="/*">
           <Redirect to="/" />
         </Route>
       </Switch>

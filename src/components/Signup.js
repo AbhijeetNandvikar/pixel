@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { googlesigninwrapper } from "../firebase";
+import { googlesigninwrapper, signUpWrapper } from "../firebase";
 import UnAuthNavbar from "./UnAuthNavbar";
 
 const Signup = () => {
+  const [email, setEmail] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [error, setError] = React.useState("");
   return (
     <div className="min-w-screen min-h-screen">
       <UnAuthNavbar />
@@ -34,6 +39,10 @@ const Signup = () => {
                       type="text"
                       class="w-full -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                       placeholder="John Doe"
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
                     />
                   </div>
                 </div>
@@ -49,6 +58,10 @@ const Signup = () => {
                       type="email"
                       class="w-full -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                       placeholder="johnsmith@example.com"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
                     />
                   </div>
                 </div>
@@ -64,6 +77,10 @@ const Signup = () => {
                       type="password"
                       class="w-full -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                       placeholder="************"
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
                     />
                   </div>
                 </div>
@@ -79,13 +96,28 @@ const Signup = () => {
                       type="password"
                       class="w-full -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                       placeholder="************"
+                      value={confirmPassword}
+                      onChange={(e) => {
+                        setConfirmPassword(e.target.value);
+                      }}
                     />
                   </div>
                 </div>
               </div>
+              <div className="text-xs text-red-600 mx-auto text-center mb-2">
+                {error.length ? error : ""}
+              </div>
               <div class="flex -mx-3">
                 <div class="w-full px-3 mb-5">
-                  <button class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                  <button
+                    class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                    onClick={(e) => {
+                      if (password === confirmPassword)
+                        signUpWrapper(email, password, undefined, (err) => {
+                          setError(err.message);
+                        });
+                    }}
+                  >
                     REGISTER NOW
                   </button>
                 </div>

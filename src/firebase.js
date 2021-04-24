@@ -43,7 +43,7 @@ export const loginWrapper = (email, pass, resolve, reject) => {
     })
     .catch((res) => {
       console.log(res);
-      // if (typeof reject === "function") reject(res.code);
+      if (typeof reject === "function") reject(res);
     });
 };
 

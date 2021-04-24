@@ -4,8 +4,10 @@ import { globalStore } from "./UserContext";
 import { Link } from "react-router-dom";
 import UnAuthNavbar from "./UnAuthNavbar";
 const Login = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
+  console.log(error);
   return (
     <div className="min-w-screen min-h-screen">
       <UnAuthNavbar />
@@ -59,12 +61,17 @@ const Login = (props) => {
                   </div>
                 </div>
               </div>
+              <div className="text-xs text-red-600 mx-auto text-center mb-2">
+                {error.length ? error : ""}
+              </div>
               <div class="flex -mx-3">
                 <div class="w-full px-3 mb-5">
                   <button
                     class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
                     onClick={() => {
-                      loginWrapper(email, password);
+                      loginWrapper(email, password, undefined, (err) => {
+                        setError(err.message);
+                      });
                     }}
                   >
                     Login
