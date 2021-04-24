@@ -3,7 +3,13 @@ import React from "react";
 import "./App.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import MainApp from "./components/MainApp";
 
 function App() {
@@ -18,6 +24,12 @@ function App() {
         </Route>
         <Route path="/">
           <MainApp />
+        </Route>
+        <Route path="/feed">
+          <Redirect to="/" />
+        </Route>
+        <Route path="/profile/:id">
+          <Redirect to="/" />
         </Route>
       </Switch>
     </div>
