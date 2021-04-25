@@ -3,13 +3,14 @@ import { fireStoreRef } from "../firebase";
 import { globalStore } from "./UserContext";
 import EditForm from "./EditForm";
 import UploadForm from "./UploadForm";
+import ShowImage from "./ShowImage";
 import { useHistory } from "react-router";
 
 const ProfilePage = () => {
   const [editForm, setEditForm] = React.useState(false);
   const [uploadForm, setUploadForm] = React.useState(false);
   const [uploadedImages, setUploadedImages] = React.useState([]);
-  const [showImage, setShowImage] = React.useState(false);
+  const [showImage, setShowImage] = React.useState(null);
 
   const { auth, setAuth } = React.useContext(globalStore);
   const history = useHistory();
@@ -41,7 +42,12 @@ const ProfilePage = () => {
   const renderImages = (images) => {
     return images.map((image) => {
       return (
-        <div className="block">
+        <div
+          className="block"
+          onClick={() => {
+            setShowImage(image);
+          }}
+        >
           <img
             className="object-cover w-full h-full "
             src={image.downloadURL}
@@ -66,6 +72,16 @@ const ProfilePage = () => {
           auth={auth}
           setAuth={setAuth}
           close={() => setUploadForm(!uploadForm)}
+        />
+      ) : (
+        <></>
+      )}
+      {showImage !== null ? (
+        <ShowImage
+          auth={auth}
+          setAuth={setAuth}
+          image={showImage}
+          close={() => setShowImage(null)}
         />
       ) : (
         <></>
